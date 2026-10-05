@@ -1090,4 +1090,617 @@ header {
 <div id="contactModal" class="contact-modal">
     <!-- Tombol Tutup di Pojok Kanan Atas -->
     <button class="close-contact-btn" onclick="closeContact()">✕</button>
- 
+    
+    <div class="contact-content">
+        <h2>HUBUNGI AKANG</h2>
+        <div class="red-line"></div>
+        
+        <!-- BAGIAN 1: ALAMAT (PALING ATAS) -->
+        <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h3>Alamat Bengkel</h3>
+            <p>Komp Tembesi Point, Jl. R. Soeprapto Blok. B No.61, Kibing, Kec. Batu Aji, Kota Batam, Kepulauan Riau.</p>
+            <!-- Opsional: Tombol Buka Maps -->
+            <a href="https://maps.app.goo.gl/uVLv9KsGSagoZHxo7" target="_blank" class="contact-link-btn">Buka Google Maps</a>
+        </div>
+
+        <!-- BAGIAN 2: WHATSAPP -->
+        <div class="contact-card">
+            <div class="contact-icon">☎️</div>
+            <h3>WhatsApp</h3>
+            <p>Konsultasi cepat dan booking lewat chat admin Akang Motor.</p>
+            <!-- Ganti nomor di bawah dengan nomor WhatsApp Anda -->
+            <a href="https://wa.me/6285264323446" target="_blank" class="contact-link-btn wa-btn">Chat WhatsApp</a>
+        </div>
+
+        <!-- BAGIAN 3: EMAIL (DIARAHKAN KE GMAIL) -->
+        <div class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <h3>Email</h3>
+            <p>Kirim pertanyaan resmi atau kerja sama bisnis.</p>
+            <!-- Ganti dengan email asli bengkel Anda -->
+            <a href="mailto:belumresmi@://gmail.com" class="contact-link-btn email-btn">Kirim ke Gmail</a>
+        </div>
+    </div>
+</div>
+
+    <!-- MODAL FULL SCREEN: PROMO AKANG MOTOR -->
+<div id="promoModal" class="promo-modal">
+    <button class="close-promo-btn" onclick="closePromo()">✕</button>
+    
+    <div class="promo-content">
+        <h2>PROMO AKANG MOTOR</h2>
+        <div class="red-line"></div>
+        <p class="promo-subtitle">"Rawat Motor Kesayangan Tanpa Bikin Kantong Jebol. Cek Promo Menarik Bulan Ini!"</p>
+
+        <!-- DAFTAR KARTU PROMO -->
+        <div class="promo-list">
+            
+            <!-- PROMO 1 -->
+            <div class="promo-card">
+                <div class="promo-badge">HOT PROMO</div>
+                <h3>🛢️ PAKET SERVIS GAJIAN</h3>
+                <p class="promo-desc">Tune Up lengkap + Ganti Oli Mesin Prima + Pembersihan Karburator/CVT.</p>
+                <div class="promo-price">
+                    <span class="old-price">Rp 123.456</span>
+                    <span class="new-price">Rp Belum Ada Promo🤣</span>
+                </div>
+                <span class="promo-expired">*Berlaku s/d Akhir Bulan Ini</span>
+            </div>
+
+            <!-- PROMO 2 -->
+            <div class="promo-card">
+                <div class="promo-badge-blue">GRATIS</div>
+                <h3>🔍 CEK KESEHATAN MOTOR</h3>
+                <p class="promo-desc">Setiap servis atau ganti oli jenis apa saja, GRATIS Diagnosa & Cek Kelistrikan, Rem, serta Tekanan Ban.</p>
+                <div class="promo-price">
+                    <span class="new-price">FREE / Rp 0</span>
+                </div>
+                <span class="promo-expired">*Khusus Booking lewat WhatsApp</span>
+            </div>
+
+        </div>
+
+        <!-- TOMBOL AKSI UTAMA DI DALAM PROMO -->
+        <div class="promo-action-container">
+            <!-- Tautan langsung menuju WhatsApp admin untuk klaim promo -->
+            <a href="https://wa.me/6285264323446"_blank" class="btn-claim-promo">Ambil Promo Lewat WA</a>
+        </div>
+    </div>
+</div>
+
+    <!-- MODAL LOGIN ADMIN RAHASIA -->
+<div id="adminLoginModal" class="admin-login-modal">
+    <div class="login-content">
+        <h2>PINTU MASUK AKANG</h2>
+        <div class="red-line"></div>
+        <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Khusus internal Akang Motor</p>
+        <input type="email" id="adminEmail" placeholder="Email Admin" required>
+        <input type="password" id="adminPassword" placeholder="Password Admin" required>
+        <button class="btn-submit-review" onclick="prosesLoginAdmin()">MASUK MODE ADMIN</button>
+        <button style="background: none; border: none; color: #777; margin-top: 15px; cursor: pointer;" onclick="tutupLoginAdmin()">Batal</button>
+    </div>
+</div>
+
+<!-- MODAL PANEL UTAMA ADMIN (FULL SCREEN) -->
+<div id="adminPanelModal" class="admin-panel-modal">
+    <div class="admin-header-fixed">
+        <h2>PANEL ADMIN AKANG</h2>
+        <button class="btn-logout-admin" onclick="keluarModeAdmin()">KELUAR ADMIN</button>
+    </div>
+    
+    <div class="admin-panel-content">
+        <!-- SEKTOR 1: KONTROL ULASAN PELANGGAN -->
+        <div class="admin-section-title">🛑 MODERASI ULASAN NEGATIF</div>
+        <div id="adminReviewList" class="admin-list-container">
+            <!-- Daftar ulasan dengan tombol hapus akan muncul di sini -->
+        </div>
+
+        <!-- SEKTOR 2: KONTROL KELOLA GALERI -->
+        <div class="admin-section-title">📸 KELOLA & UPLOAD GALERI</div>
+        <div class="admin-upload-box">
+            <h3>Tambah Foto Baru ke Galeri</h3>
+            <p style="font-size: 11px; color: #888; margin-bottom: 10px;">Pilih foto dari galeri HP Anda untuk langsung ditampilkan di web.</p>
+            <input type="file" id="galleryFileInput" accept="image/*" style="display: none;" onchange="previewDanUploadFoto(this)">
+            <button class="btn-submit-review" onclick="document.getElementById('galleryFileInput').click()">PILIH & UPLOAD FOTO</button>
+        </div>
+        <div id="adminGalleryList" class="admin-gallery-grid-control">
+            <!-- Daftar foto galeri dengan tombol hapus akan muncul di sini -->
+        </div>
+    </div>
+</div>
+
+    <script>
+  window.onerror = function(pesan, sumber, baris) {
+    alert("ERROR: " + pesan + "\nBaris: " + baris);
+  };
+    </script>
+
+<!-- ✅ SDK Realtime Database -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey:
+
+  // Inisialisasi Firebase
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    const database = firebase.database();
+
+    // Jalankan fungsi memuat ulasan saat halaman pertama kali dibuka
+    document.addEventListener("DOMContentLoaded", () => {
+        loadUlasanDariFirebase();
+    });
+
+    // Sistem interaksi memilih bintang input
+    let selectedRating = 5;
+    function setRating(rating) {
+        selectedRating = rating;
+        document.getElementById('reviewRatingValue').value = rating;
+        const stars = document.querySelectorAll('.star-input');
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('active');
+            } else {
+                star.classList.remove('active');
+            }
+        });
+    }
+    // Set default bintang menjadi 5 aktif saat awal
+    setRating(5);
+
+    // 2. FUNGSI KIRIM DATA KE CLOUD FIREBASE
+    function kirimUlasanKeFirebase() {
+        const nama = document.getElementById('reviewerName').value.trim();
+        const teks = document.getElementById('reviewerText').value.trim();
+        const rating = parseInt(document.getElementById('reviewRatingValue').value);
+        const tanggal = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+
+        if (!nama || !teks) {
+            alert("Harap isi nama dan kolom ulasan Anda, Bos!");
+            return;
+        }
+
+        // Menyimpan data ke node 'ulasan' di Firebase
+        const ulasanRef = database.ref('ulasan');
+        const ulasanBaruRef = ulasanRef.push();
+        ulasanBaruRef.set({
+            nama: nama,
+            teks: teks,
+            rating: rating,
+            tanggal: tanggal,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+        }).then(() => {
+            alert("Mantap, ulasan berhasil dikirim!");
+            // Reset Form setelah sukses
+            document.getElementById('reviewerName').value = '';
+            document.getElementById('reviewerText').value = '';
+            setRating(5);
+        }).catch((error) => {
+            alert("Gagal mengirim ulasan: " + error.message);
+        });
+    }
+
+    // 3. FUNGSI TARIK DATA SECARA REAL-TIME DARI FIREBASE
+    function loadUlasanDariFirebase() {
+    database.ref('ulasan').orderByChild('timestamp').on('value', (snapshot) => {
+        const listContainer = document.getElementById('firebaseReviewList');
+        listContainer.innerHTML = '';
+        
+        if (!snapshot.exists()) {
+            listContainer.innerHTML = '<p style="text-align:center; color:#777;">Belum ada ulasan.</p>';
+            document.getElementById('totalReviewsCount').innerText = "Berdasarkan 0 Pelanggan"; 
+            return;
+        }
+        
+        let totalRating = 0, count = 0, htmlContent = '', ulasans = [];
+        snapshot.forEach((child) => { ulasans.unshift(child.val()); });
+        
+        // Fungsi untuk menghasilkan warna background acak berdasarkan huruf nama
+        function getAvatarColor(name) {
+            const colors = ['#d32f2f', '#388e3c', '#1976d2', '#f57c00', '#7b1fa2', '#16a085', '#2c3e50', '#8e44ad'];
+            let charCodeSum = 0;
+            for (let i = 0; i < name.length; i++) {
+                charCodeSum += name.charCodeAt(i);
+            }
+            return colors[charCodeSum % colors.length];
+        }
+
+        ulasans.forEach((data) => {
+            totalRating += data.rating; 
+            count++;
+            
+            // Ambil huruf pertama dari nama untuk dijadikan inisial
+            const inisial = data.nama ? data.nama.charAt(0).toUpperCase() : 'A';
+            const bgAvatar = getAvatarColor(data.nama || 'Akang');
+            const bintangString = '⭐'.repeat(data.rating);
+
+            // KONSEP BARU: Struktur Kartu Sesuai Permintaan Anda
+            htmlContent += `
+                <div class="review-card-modern">
+                    <div class="review-card-top">
+                        <!-- Kiri: Avatar Bulat Inisial -->
+                        <div class="review-avatar" style="background-color: ${bgAvatar};">
+                            ${inisial}
+                        </div>
+                        
+                        <!-- Tengah: Nama & Tanggal -->
+                        <div class="review-meta">
+                            <span class="modern-customer-name">${data.nama}</span>
+                            <span class="modern-review-date">${data.tanggal}</span>
+                        </div>
+                        
+                        <!-- Kanan: Rating Bintang -->
+                        <div class="modern-customer-stars">
+                            ${bintangString}
+                        </div>
+                    </div>
+                    
+                    <!-- Bawah: Teks Ulasan -->
+                    <div class="review-card-bottom">
+                        <p class="modern-review-text">"${data.teks}"</p>
+                    </div>
+                </div>
+            `;
+        });
+        
+        listContainer.innerHTML = htmlContent;
+        
+        // Update Ringkasan Nilai Atas
+        const avg = (totalRating / count).toFixed(1);
+        document.getElementById('avgRating').innerText = avg;
+        document.getElementById('totalReviewsCount').innerText = `Berdasarkan ${count} Pelanggan Puas`;
+        document.getElementById('avgStars').innerText = '⭐'.repeat(Math.round(avg));
+    });
+    }
+    
+    function openReview() { 
+    toggleMenu(); 
+    document.getElementById('reviewModal').style.setProperty('display', 'block', 'important'); 
+}
+function closeReview() { 
+    document.getElementById('reviewModal').style.setProperty('display', 'none', 'important'); 
+}
+
+    // Fungsi Galery
+function openGallery() { 
+    toggleMenu(); 
+    document.getElementById('galleryModal').style.setProperty('display', 'block', 'important'); 
+}
+function closeGallery() { 
+    document.getElementById('galleryModal').style.setProperty('display', 'none', 'important'); 
+}
+        
+    // Fungsi Riwayat Service
+function openHistory() { 
+    toggleMenu(); 
+    document.getElementById('historyModal').style.setProperty('display', 'block', 'important'); 
+}
+function closeHistory() { 
+    document.getElementById('historyModal').style.setProperty('display', 'none', 'important'); 
+}
+        
+    // Fungsi Hubungi Akang
+function openContact() { 
+    toggleMenu(); 
+    document.getElementById('contactModal').style.setProperty('display', 'block', 'important'); 
+}
+function closeContact() { 
+    document.getElementById('contactModal').style.setProperty('display', 'none', 'important'); 
+}
+        function toggleMenu() {
+            document.getElementById('sideMenu').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        // Pendaftaran Service Worker PWA (Relatif path untuk GitHub Pages)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('PWA Akang Motor Aktif!'))
+                    .catch(err => console.log('Gagal', err));
+            });
+        }
+
+    function openPromo() {
+    document.getElementById('promoModal').style.setProperty('display', 'block', 'important');
+}
+function closePromo() {
+    document.getElementById('promoModal').style.setProperty('display', 'none', 'important');
+}
+
+    // --- SISTEM DETEKSI KETUK 5 KALI LOGO RAHASIA ---
+let hitungKetukan = 0;
+let waktuKetukanTerakhir = 0;
+
+function ketukLogoAdmin() {
+    const waktuSekarang = new Date().getTime();
+    // Jika jarak ketukan lebih dari 1.5 detik, reset hitungan dari nol lagi
+    if (waktuSekarang - waktuKetukanTerakhir > 1500) { hitungKetukan = 0; }
+    
+    hitungKetukan++;
+    waktuKetukanTerakhir = waktuSekarang;
+
+    if (hitungKetukan === 5) {
+        hitungKetukan = 0; // reset
+        document.getElementById('adminLoginModal').style.display = 'flex'; // Munculkan form login
+    }
+}
+
+function tutupLoginAdmin() { document.getElementById('adminLoginModal').style.display = 'none'; }
+
+// --- VARIABEL GLOBAL UNTUK MENGUNCI MEMORI KUNCI AMAN DI HP ---
+let passwordAdminAktif = ""; 
+
+// --- PROSES AUTHENTICATION LOGIN ADMIN SECARA AMAN (ANTI HACKER) ---
+function prosesLoginAdmin() {
+    const email = document.getElementById('adminEmail').value.trim();
+    const passwordInput = document.getElementById('adminPassword').value.trim();
+
+    const passwordTerenkripsi = CryptoJS.SHA256(passwordInput).toString();
+
+    const emailSah = "akangmotor@gmail.com";
+    const passwordHashSah = "a27d3d191b9d5a6851d5638867430d549de1bcc1cc85f6ab3c3690bcfc7671c6"; 
+
+    // 2. Validasi Kunci Masuk
+    if (email === emailSah && passwordTerenkripsi === passwordHashSah) {
+        alert("Akses Diterima! Selamat Datang Kembali, Akang Motor.");
+        
+        // KUNCI UTAMA: Simpan password asli ke memori global HP agar tidak hilang saat upload foto
+        passwordAdminAktif = passwordInput; 
+        
+        tutupLoginAdmin();
+        
+        // Bersihkan form input fisik demi keamanan privasi di layar
+        document.getElementById('adminEmail').value = '';
+        document.getElementById('adminPassword').value = '';
+        
+        // Buka panel kontrol utama admin
+        document.getElementById('adminPanelModal').style.setProperty('display', 'block', 'important');
+        loadDataKhususAdmin();
+    } else {
+        alert("Akses Ditolak! Email atau Password salah.");
+    }
+}
+
+function keluarModeAdmin() {
+    passwordAdminAktif = ""; // Hancurkan kunci memori saat keluar demi keamanan!
+    document.getElementById('adminPanelModal').style.setProperty('display', 'none', 'important');
+}
+
+// --- LOGIKA UTAMA MANAJEMEN DATA ADMIN ---
+function loadDataKhususAdmin() {
+    // 1. Tarik Data Ulasan untuk Dimoderasi Admin
+    database.ref('ulasan').on('value', (snapshot) => {
+        const container = document.getElementById('adminReviewList');
+        container.innerHTML = '';
+        if(!snapshot.exists()) { container.innerHTML = '<p style="color:#666; font-size:12px;">Tidak ada ulasan.</p>'; return; }
+        
+        snapshot.forEach((child) => {
+            const key = child.key;
+            const data = child.val();
+            container.innerHTML += `
+                <div class="admin-review-item">
+                    <div class="admin-review-info">
+                        <strong style="font-size:13px; color:#fff;">${data.nama} (${data.rating}⭐)</strong>
+                        <p style="font-size:12px; color:#bbb; font-style:italic;">"${data.teks}"</p>
+                    </div>
+                    <button class="btn-delete-item" onclick="hapusUlasanPelanggan('${key}')">HAPUS</button>
+                </div>
+            `;
+        });
+    });
+
+    // 2. Tarik Data Galeri Foto dari Firebase untuk Dimoderasi Admin
+    database.ref('galeri').on('value', (snapshot) => {
+        const container = document.getElementById('adminGalleryList');
+        container.innerHTML = '';
+        if(!snapshot.exists()) { container.innerHTML = '<p style="color:#666; font-size:12px;">Belum ada foto di upload.</p>'; return; }
+        
+        snapshot.forEach((child) => {
+            const key = child.key;
+            const data = child.val();
+            container.innerHTML += `
+                <div class="admin-gallery-card">
+                    <img src="${data.fotoBase64}">
+                    <button class="btn-delete-item" onclick="hapusFotoGaleri('${key}')">HAPUS FOTO</button>
+                </div>
+            `;
+        });
+    });
+}
+
+// --- FUNGSI EKSEKUSI HAPUS DATA DARI FIREBASE CLOUD ---
+function hapusUlasanPelanggan(key) {
+    if(confirm("Apakah Anda yakin mau menghapus ulasan ini selamanya, Bos?")) {
+        database.ref('ulasan').child(key).remove().then(() => { alert("Ulasan kotor berhasil dibasmi!"); });
+    }
+}
+
+function hapusFotoGaleri(key) {
+    if(confirm("Hapus foto ini dari galeri depan, Bos?")) {
+        database.ref('galeri').child(key).remove().then(() => { alert("Foto berhasil dihapus!"); });
+    }
+}
+
+// --- SINKRONISASI AREA DEPAN AGAR BISA MEMBACA FOTO TERUPLOAD SECARA OTOMATIS ---
+// Silakan timpa fungsi openGallery bawaan Anda sebelumnya dengan baris penarik data Firebase ini
+function openGallery() {
+    toggleMenu();
+    document.getElementById('galleryModal').style.setProperty('display', 'block', 'important');
+    
+    database.ref('galeri').on('value', (snapshot) => {
+        const frontContainer = document.querySelector('#galleryModal .gallery-grid');
+        frontContainer.innerHTML = ''; // bersihkan data statis github jaman dulu
+        
+        if(!snapshot.exists()) { frontContainer.innerHTML = '<p style="color:#666; text-align:center; width:100%;">Galeri masih kosong.</p>'; return; }
+        
+        snapshot.forEach((child) => {
+            const data = child.val();
+            frontContainer.innerHTML += `
+                <div class="gallery-item">
+                    <img src="${data.fotoBase64}">
+                    <div class="gallery-tag">SERVIS</div>
+                </div>
+            `;
+        });
+    });
+}
+
+// --- UPLOAD FOTO: KOMPRES + SIMPAN LANGSUNG KE FIREBASE ---
+function previewDanUploadFoto(input) {
+    if (input.files && input.files.length > 0) {
+
+        const file = input.files[0];
+        alert("Sedang memproses foto, mohon tunggu sebentar, Bos...");
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                // Kompres: sisi terpanjang maksimal 1200px, kualitas 70%
+                const MAX = 1200;
+                let w = img.width, h = img.height;
+                if (w > MAX || h > MAX) {
+                    const r = Math.min(MAX / w, MAX / h);
+                    w = Math.round(w * r);
+                    h = Math.round(h * r);
+                }
+                const canvas = document.createElement('canvas');
+                canvas.width = w;
+                canvas.height = h;
+                canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+
+                database.ref('galeri').push().set({
+                    fotoBase64: dataUrl,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                }).then(() => {
+                    alert("Keren Bos! Foto sukses terupload dan tampil di galeri!");
+                    document.getElementById('galleryFileInput').value = "";
+                }).catch(err => {
+                    alert("Gagal simpan ke database: " + err.message);
+                });
+            };
+            img.onerror = function() {
+                alert("File ini bukan gambar yang valid, Bos.");
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+    // --- Logo Mas Gondrong---
+  const canvas = document.getElementById('fireCanvas');
+  const ctx = canvas.getContext('2d');
+  const width = canvas.width;
+  const height = canvas.height;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const radius = 40;
+
+  class FlameParticle {
+    constructor(angle) {
+      this.angle = angle;
+      this.radius = radius + (Math.random() * 7 - 3);
+      this.size = Math.random() * 4 + 3;
+      this.speedAngle = 0.004 + Math.random() * 0.004;
+      this.flameLength = 10 + Math.random() * 10;
+      this.offset = Math.random() * 1000;
+    }
+
+    update(time) {
+      this.angle += this.speedAngle;
+      this.x = centerX + this.radius * Math.cos(this.angle);
+      this.y = centerY + this.radius * Math.sin(this.angle);
+      this.flameProgress = (Math.sin(time / 300 + this.offset) + 1) / 2;
+    }
+
+    draw(ctx) {
+      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
+      grad.addColorStop(0, `rgba(255, 200, 0, ${0.8 * this.flameProgress})`);
+      grad.addColorStop(0.5, `rgba(255, 100, 0, ${0.6 * this.flameProgress})`);
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      const tipX = centerX + (this.radius - this.flameLength * this.flameProgress) * Math.cos(this.angle);
+      const tipY = centerY + (this.radius - this.flameLength * this.flameProgress) * Math.sin(this.angle);
+      ctx.lineTo(tipX, tipY);
+      ctx.lineWidth = this.size / 3;
+      ctx.strokeStyle = `rgba(255, 140, 0, ${0.7 * this.flameProgress})`;
+      ctx.shadowColor = `rgba(255, 140, 0, ${0.9 * this.flameProgress})`;
+      ctx.shadowBlur = 5;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  const particles = [];
+  const particleCount = 20;
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new FlameParticle((i / particleCount) * Math.PI * 2));
+  }
+
+  function animate(time = 0) {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+      p.update(time);
+      p.draw(ctx);
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Kontrol muncul/hilang animasi saat scroll
+  const anim = document.getElementById('masGondrongAnimation');
+  let scrollTimeout;
+
+  window.addEventListener('scroll', () => {
+    anim.style.opacity = '0';
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      anim.style.opacity = '1';
+    }, 2000);
+  });
+
+    // ==========================================
+// 3. TOMBOL INSTALL CUSTOM
+// ==========================================
+let deferredPrompt;
+const btnInstall = document.getElementById('btnInstall');
+
+// Chrome mengizinkan install → simpan event & tampilkan tombol
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();          // cegah dialog bawaan muncul otomatis
+  deferredPrompt = e;
+  btnInstall.style.display = 'block';
+});
+
+// Saat tombol diklik → tampilkan dialog instal
+btnInstall.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  console.log(outcome === 'accepted' ? '✅ User menginstall' : '❌ User menolak');
+  deferredPrompt = null;
+  btnInstall.style.display = 'none';
+});
+
+// Jika sudah terinstall → sembunyikan tombol selamanya
+window.addEventListener('appinstalled', () => {
+  btnInstall.style.display = 'none';
+});
+</script>
+</body>
+</html>
