@@ -1,1 +1,1093 @@
-ggh
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akang Motor</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d32f2f">
+    <!-- Menggunakan Font Bagus Google Font -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & UTAMA (Dibuat Lebih Terang Sedikit Supaya Tidak Tergerus) --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background-color: #1e1e1e; color: #ffffff; padding-bottom: 30px; }
+
+        /* Animasi gradien bergerak untuk header */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #8B0000; /* Ganti border merah terang ke merah gelap */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    /* Gradien dengan warna gelap dominan dan sedikit merah */
+    background: linear-gradient(-45deg, #121212, #1c1c1c, #8B0000, #2a2a2a);
+    background-size: 400% 400%;
+    animation: gradientFlow 10s ease infinite;
+
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+        /* PERBAIKAN LOGO: Supaya bulat sempurna & tidak gepeng */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid #d32f2f;
+            object-fit: contain; /* Mencegah gambar terdistorsi/gepeng */
+            background-color: #ffffff; /* Tambahan background putih jika logo transparan */
+        }
+        .menu-hamburger {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* --- BANNER BACKGROUND --- */
+        .hero-banner {
+    width: 100%;
+    height: 180px; /* Sedikit disesuaikan agar pas dengan proporsi gambar spanduk */
+    background: url('motor1.png') no-repeat center center;
+    background-size: 100% 100%; /* Memaksa spanduk pas dengan lebar layar HP tanpa terpotong sampingnya */
+        }
+
+        /* --- DESKRIPSI UTAMA (PERBAIKAN: Diturunkan Jaraknya) --- */
+        .main-info {
+            padding: 0 20px;
+            text-align: center;
+            margin-top: 25px; /* Mengubah dari minus menjadi positif agar tulisan turun */
+        }
+        .main-info h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .main-info h1 span { color: #d32f2f; }
+        .main-info .tagline {
+            font-size: 13px;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+                /* --- LAYANAN KAMI STYLE (WAHYU VERSION) --- */
+        .services-section { padding: 30px 20px; }
+        
+        .services-intro {
+            text-align: center;
+            margin-bottom: 25px;
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #d32f2f;
+        }
+        .services-intro h2 { font-size: 18px; color: #d32f2f; margin-bottom: 5px; font-weight: 700; }
+        .services-intro h3 { font-size: 13px; color: #ffffff; margin-bottom: 10px; font-weight: 600; }
+        .services-intro p { font-size: 12px; color: #cccccc; line-height: 1.5; }
+
+        .services-header-title h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #d32f2f;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* Layout Grid 2 Kolom untuk HP agar Hemat Tempat */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .service-card {
+            background-color: #2a2a2a; /* Warna diperterang agar teks kontras */
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px 10px;
+            text-align: center;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .service-card:active { transform: scale(0.96); border-color: #d32f2f; }
+        .service-card .icon { font-size: 26px; margin-bottom: 6px; }
+        .service-card h4 { font-size: 13px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
+        .service-card p { font-size: 11px; color: #aaaaaa; line-height: 1.4; text-align: center; }
+
+        /* Bagian Footer Layanan */
+        .services-footer {
+            background-color: #1a1a1a;
+            padding: 20px 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px dashed #444;
+        }
+        .services-footer h3 { font-size: 14px; color: #d32f2f; margin-bottom: 4px; font-weight: 700; }
+        .services-footer .sub-footer-text { font-size: 12px; font-weight: 600; color: #ffffff; margin-bottom: 10px; }
+        .services-footer p { font-size: 12px; color: #cccccc; line-height: 1.5; margin-bottom: 15px; }
+
+        /* Banner Penutup Akang Motor */
+        .closing-banner {
+            border-top: 2px solid #d32f2f;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        .closing-banner h3 { color: #ffffff; font-size: 16px; margin-bottom: 2px; }
+        .closing-banner .quote { font-style: italic; color: #d32f2f; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .closing-tags { display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: #999999; }
+
+        /* --- TOMBOL AKSI UTAMA --- */
+        .cta-container { padding: 10px 20px; text-align: center; }
+        .btn-booking {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(211, 47, 47, 0.4);
+            transition: 0.2s;
+        }
+        .btn-booking:active { background-color: #b71c1c; }
+
+                /* --- MENU DROPDOWN SLIDE-OUT --- */
+        .side-menu {
+            position: fixed;
+            top: 0; 
+            right: -280px; /* Diperlebar sedikit agar muat teks panjang */
+            width: 280px; 
+            height: 100%;
+            background-color: #121212; /* Menyesuaikan hitam pekat header */
+            box-shadow: -5px 0 15px rgba(0,0,0,0.7);
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 200;
+            padding: 25px 20px;
+        }
+        .side-menu.active { right: 0; }
+        
+        .side-menu .close-btn {
+            background: none; 
+            border: none; 
+            color: #ffffff; 
+            font-size: 24px; 
+            float: right; 
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .side-menu .close-btn:hover { color: #d32f2f; }
+
+        .side-menu .menu-header {
+            margin-top: 40px;
+            border-bottom: 2px solid #d32f2f;
+            padding-bottom: 10px;
+        }
+        .side-menu .menu-header h3 {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .side-menu ul { list-style: none; margin-top: 20px; }
+        .side-menu ul li { padding: 4px 0; }
+        
+        .side-menu ul li a { 
+            color: #e0e0e0; 
+            text-decoration: none; 
+            font-size: 16px; 
+            font-weight: 600;
+            display: flex; 
+            align-items: center;
+            gap: 12px; /* Jarak antara emoji ikon dengan teks menu */
+            padding: 12px 10px;
+            border-radius: 6px;
+            transition: 0.2s ease;
+        }
+        
+        /* Efek saat menu disentuh atau diarahkan kursor */
+        .side-menu ul li a:hover, .side-menu ul li a:active { 
+            color: #ffffff; 
+            background-color: #d32f2f; 
+        }
+        .overlay.active { display: block; }
+
+        /* --- CSS PENGUNCI MODAL AGAR TIDAK BOCOR KE BERANDA --- */
+.contact-modal, .history-modal, .gallery-modal, .review-modal {
+    position: fixed !important; 
+    top: 0 !important; 
+    left: 0 !important; 
+    width: 100% !important; 
+    height: 100% !important;
+    background-color: #121212 !important; 
+    z-index: 999 !important; 
+    display: none !important; /* Kunci utama penyembunyian */
+    overflow-y: auto !important; 
+    padding: 30px 20px !important;
+}
+        
+/* --- TAMPILAN KARTU ULASAN MODERN (KONSEP BARU) --- */
+.review-card-modern {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.review-card-top {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+
+/* Ikon Bulat Inisial Nama */
+.review-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Mencegah avatar gepeng */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Area Nama dan Tanggal (Tengah) */
+.review-meta {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex-grow: 1; /* Mengambil sisa ruang agar bintang terdorong ke kanan */
+}
+
+.modern-customer-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+.modern-review-date {
+    font-size: 11px;
+    color: #aaaaaa;
+}
+
+/* Rating Bintang (Kanan) */
+.modern-customer-stars {
+    font-size: 11px;
+    white-space: nowrap; /* Mencegah bintang turun ke bawah */
+    align-self: flex-start; /* Berjajar pas di samping nama */
+    margin-top: 2px;
+}
+
+/* Teks Ulasan (Bawah) */
+.review-card-bottom {
+    width: 100%;
+    border-top: 1px solid #3a3a3a;
+    padding-top: 10px;
+}
+
+.modern-review-text {
+    font-size: 13px;
+    color: #e0e0e0;
+    line-height: 1.5;
+    text-align: left;
+    font-style: italic;
+}
+
+/* Sistem Pilih Bintang */
+.star-rating-input {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 26px;
+    cursor: pointer;
+}
+.star-input {
+    color: #444;
+    transition: 0.2s;
+}
+.star-input.active, .star-input:hover {
+    color: #ffcc00; /* Warna emas bintang aktif */
+}
+/* Tombol Submit */
+.btn-submit-review {
+    width: 100%;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.btn-submit-review:active { background-color: #b71c1c; }
+
+        /* --- PERBAIKAN RUANG VIP FORMULIR ULASAN (ANTI BERDESAKAN) --- */
+.review-form-container {
+    background-color: #2a2a2a !important; /* Sewarna dengan kartu bawah */
+    padding: 25px 20px !important;       /* Memberikan ruang napas di dalam kotak besar */
+    border-radius: 12px !important;
+    margin-top: 20px !important;         /* Jarak dari teks "Tulis Ulasan Anda" di atasnya */
+    margin-bottom: 25px !important;      /* Jarak ke kartu ulasan bawah */
+    border: 1px solid #444 !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+}
+
+/* Kotak Input Nama Anda */
+.review-form-container input[type="text"] {
+    width: 100% !important;
+    background-color: #1e1e1e !important;
+    border: 1px solid #444 !important;
+    border-radius: 8px !important;
+    padding: 12px 15px !important;       /* Membuat kotak nama lebih tebal dan luas */
+    color: #ffffff !important;
+    font-size: 14px !important;
+    margin-bottom: 20px !important;      /* JALUR EVAKUASI: Jarak aman ke area bintang bawahnya */
+    display: block !important;
+}
+
+/* Area Bintang Kejora */
+.star-rating-input {
+    text-align: center !important;
+    margin-bottom: 20px !important;      /* JALUR EVAKUASI: Jarak aman ke kotak tulisan ulasan bawahnya */
+    font-size: 32px !important;          /* Memperbesar sedikit ukuran bintang agar mudah ditekan jari */
+    cursor: pointer !important;
+    display: block !important;
+}
+
+/* Kotak Tulis Pengalaman Servis */
+.review-form-container textarea {
+    width: 100% !important;
+    background-color: #1e1e1e !important;
+    border: 1px solid #444 !important;
+    border-radius: 8px !important;
+    padding: 15px !important;            /* Memberikan ruang ketik yang sangat lega di dalam kotak */
+    color: #ffffff !important;
+    font-size: 14px !important;
+    margin-bottom: 25px !important;      /* JALUR EVAKUASI: Jarak aman sebelum menyentuh tombol merah */
+    display: block !important;
+    line-height: 1.5 !important;
+}
+
+/* Mengubah warna teks panduan (placeholder) agar abu-abu elegan */
+.review-form-container input[type="text"]::placeholder, 
+.review-form-container textarea::placeholder {
+    color: #777777 !important;
+}
+
+/* Tombol Kirim Ulasan Merah */
+.btn-submit-review {
+    width: 100% !important;
+    background-color: #d32f2f !important;
+    color: white !important;
+    border: none !important;
+    padding: 14px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-size: 15px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    box-shadow: 0 4px 6px rgba(211, 47, 47, 0.3) !important;
+}  
+
+    /* --- KODE KUNCI UNTUK MENGHANCURKAN WARNA PUTIH PADA KOTAK NAMA & ISI --- */
+.review-form-container {
+    background-color: #2a2a2a !important; /* Kotak besar atas jadi abu gelap */
+}
+
+.review-form-container input[type="text"], 
+.review-form-container textarea {
+    background-color: #1e1e1e !important; /* Kotak "Nama Anda" dipaksa jadi hitam pekat */
+    color: #ffffff !important;            /* Teks yang diketik otomatis jadi putih */
+    border: 1px solid #444 !important;    /* Garis pinggir kotak jadi abu-abu gelap rapi */
+    width: 100% !important;               /* Kotak melebar penuh dan rapi */
+}
+
+        /* --- MODAL FULL SCREEN GALERY --- */
+.gallery-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: #121212;
+    z-index: 300;
+    display: none; /* Sembunyi sebelum diklik */
+    overflow-y: auto;
+    padding: 30px 20px;
+}
+
+.close-gallery-btn {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none; border: none;
+    color: #ffffff; font-size: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.close-gallery-btn:hover { color: #d32f2f; }
+
+.gallery-content {
+    max-width: 500px;
+    margin: 40px auto 0 auto;
+    text-align: center;
+}
+.gallery-content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.gallery-content .red-line {
+    width: 60px; height: 3px;
+    background-color: #d32f2f;
+    margin: 10px auto 15px auto;
+}
+.gallery-subtitle {
+    font-size: 13px;
+    color: #cccccc;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* Tata Letak Grid Foto 2 Kolom */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding-bottom: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+    display: flex;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 150px; /* Membatasi tinggi agar seragam dan rapi */
+    object-fit: cover; /* Foto otomatis memotong proporsional tanpa gepeng */
+    transition: 0.3s ease;
+}
+
+/* Efek interaktif saat foto ditekan */
+.gallery-item:active img {
+    transform: scale(1.05);
+}
+
+/* Label kecil di pojok foto */
+.gallery-tag {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background-color: rgba(211, 47, 47, 0.85); /* Merah transparan khas Akang Motor */
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+        /* --- MODAL FULL SCREEN RIWAYAT SERVICE --- */
+.history-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: #121212;
+    z-index: 300;
+    display: none; /* Sembunyi sebelum diklik */
+    overflow-y: auto;
+    padding: 30px 20px;
+}
+
+.close-history-btn {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none; border: none;
+    color: #ffffff; font-size: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.close-history-btn:hover { color: #d32f2f; }
+
+.history-content {
+    max-width: 500px;
+    margin: 40px auto 0 auto;
+    text-align: center;
+}
+.history-content h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+.history-content .red-line {
+    width: 60px; height: 3px;
+    background-color: #d32f2f;
+    margin: 10px auto 20px auto;
+}
+
+/* Sub-judul Dramatis */
+.dramatic-subtitle {
+    font-style: italic;
+    font-size: 14px;
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    padding: 0 10px;
+    border-left: 3px solid #d32f2f;
+    border-right: 3px solid #d32f2f;
+}
+
+/* Kartu Cerita */
+.story-card {
+    background-color: #1e1e1e; /* Menggunakan warna abu-abu bodi utama agar kontras dengan modal gelap */
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 25px 20px;
+    margin-bottom: 20px;
+    text-align: justify; /* Membuat teks cerita rapi rata kanan-kiri */
+}
+.story-icon { font-size: 30px; text-align: center; margin-bottom: 10px; }
+.story-card h3 { font-size: 16px; margin-bottom: 10px; color: #d32f2f; text-align: center; font-weight: 600; }
+.story-placeholder { font-size: 13px; color: #aaaaaa; line-height: 1.6; font-style: dashed; text-align: center; }
+
+        /* --- MODAL FULL SCREEN HUBUNGI AKANG --- */
+.contact-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: #121212; /* Warna dasar gelap yang konsisten */
+    z-index: 300; /* Paling atas mengalahkan menu samping */
+    display: none; /* Sembunyi sebelum diklik */
+    overflow-y: auto; /* Bisa di-scroll kalau layar HP pendek */
+    padding: 30px 20px;
+}
+
+.close-contact-btn {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none; border: none;
+    color: #ffffff; font-size: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.close-contact-btn:hover { color: #d32f2f; }
+
+.contact-content {
+    max-width: 500px;
+    margin: 40px auto 0 auto;
+    text-align: center;
+}
+.contact-content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.contact-content .red-line {
+    width: 60px; height: 3px;
+    background-color: #d32f2f;
+    margin: 10px auto 25px auto;
+}
+
+/* Kartu Informasi */
+.contact-card {
+    background-color: #2a2a2a; /* Lebih terang agar teks di dalamnya terbaca jelas */
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.contact-icon { font-size: 32px; margin-bottom: 8px; }
+.contact-card h3 { font-size: 16px; margin-bottom: 5px; color: #ffffff; }
+.contact-card p { font-size: 13px; color: #cccccc; margin-bottom: 15px; line-height: 1.5; }
+
+/* Tombol Aksi Tautan */
+.contact-link-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #444;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    width: 100%;
+    transition: 0.2s;
+}
+.contact-link-btn:active { transform: scale(0.98); }
+.wa-btn { background-color: #25d366; } /* Warna hijau khas WA */
+.wa-btn:active { background-color: #1ebd58; }
+.email-btn { background-color: #ea4335; } /* Warna merah khas Gmail */
+.email-btn:active { background-color: #d93025; }
+
+        /* --- GAYA TAMPILAN PROMO AKANG MOTOR --- */
+.promo-modal {
+    position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important;
+    background-color: #121212 !important; z-index: 300 !important; display: none !important; overflow-y: auto !important; padding: 30px 20px !important;
+}
+.close-promo-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #ffffff; font-size: 28px; cursor: pointer; }
+.close-promo-btn:hover { color: #d32f2f; }
+.promo-content { max-width: 500px; margin: 40px auto 0 auto; text-align: center; }
+.promo-content h2 { font-size: 24px; font-weight: 700; letter-spacing: 1px; color: #ffffff; }
+.promo-content .red-line { width: 60px; height: 3px; background-color: #d32f2f; margin: 10px auto 15px auto; }
+.promo-subtitle { font-size: 13px; color: #cccccc; margin-bottom: 25px; line-height: 1.5; }
+
+/* Kartu Promo */
+.promo-list { margin-bottom: 30px; }
+.promo-card {
+    background-color: #2a2a2a; border: 1px solid #444; border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: left; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.promo-card h3 { font-size: 16px; color: #ffffff; margin-bottom: 6px; font-weight: 700; }
+.promo-desc { font-size: 13px; color: #cccccc; line-height: 1.5; margin-bottom: 12px; }
+
+/* Label Pojok Promo */
+.promo-badge { position: absolute; top: 15px; right: 15px; background-color: #d32f2f; color: white; font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 4px; }
+.promo-badge-blue { position: absolute; top: 15px; right: 15px; background-color: #1976d2; color: white; font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 4px; }
+
+/* Harga Coret */
+.promo-price { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.old-price { font-size: 13px; color: #777777; text-decoration: line-through; }
+.new-price { font-size: 18px; color: #25d366; font-weight: 700; } /* Warna hijau sukses */
+.promo-expired { font-size: 11px; color: #888888; font-style: italic; }
+
+/* Tombol Ambil Promo */
+.btn-claim-promo {
+    display: block; text-decoration: none; text-align: center; background-color: #d32f2f; color: white; padding: 14px; font-size: 15px; font-weight: 600; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 6px rgba(211, 47, 47, 0.3); transition: 0.2s;
+}
+.btn-claim-promo:active { background-color: #b71c1c; transform: scale(0.98); }
+
+        /* --- CSS ADMIN PANEL RAHASIA --- */
+.admin-login-modal {
+    position: fixed !important; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.85); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.login-content { background-color: #2a2a2a; border: 1px solid #d32f2f; border-radius: 12px; padding: 30px 20px; width: 100%; max-width: 360px; text-align: center; }
+.login-content input { width: 100%; background-color: #1e1e1e; border: 1px solid #444; border-radius: 8px; padding: 12px; color: #fff; margin-bottom: 15px; }
+
+.admin-panel-modal {
+    position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important;
+    background-color: #121212 !important; z-index: 9999 !important; display: none !important; overflow-y: auto !important;
+}
+.admin-header-fixed { position: sticky; top: 0; background-color: #1a1a1a; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #d32f2f; z-index: 100; }
+.admin-header-fixed h2 { font-size: 18px; color: #fff; font-weight: 700; }
+.btn-logout-admin { background-color: #d32f2f; color: white; border: none; padding: 8px 15px; font-size: 12px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+
+.admin-panel-content { max-width: 500px; margin: 20px auto; padding: 0 20px 40px 20px; }
+.admin-section-title { font-size: 14px; font-weight: 700; color: #d32f2f; margin: 25px 0 15px 0; border-left: 4px solid #fff; padding-left: 10px; text-transform: uppercase; }
+
+/* Item Moderasi Admin */
+.admin-list-container { display: flex; flex-direction: column; gap: 12px; }
+.admin-review-item { background-color: #2a2a2a; border: 1px solid #444; border-radius: 8px; padding: 12px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.admin-review-info { text-align: left; flex-grow: 1; }
+.btn-delete-item { background-color: #ea4335; color: white; border: none; padding: 10px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 12px; flex-shrink: 0; }
+.btn-delete-item:active { background-color: #d93025; }
+
+/* Grid Galeri Admin */
+.admin-upload-box { background-color: #1a1a1a; border: 1px dashed #d32f2f; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 15px; }
+.admin-upload-box h3 { font-size: 14px; color: #fff; margin-bottom: 5px; }
+.admin-gallery-grid-control { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.admin-gallery-card { background-color: #2a2a2a; border: 1px solid #444; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+.admin-gallery-card img { width: 100%; height: 110px; object-fit: cover; }
+.admin-gallery-card .btn-delete-item { width: 100%; border-radius: 0; }
+
+    /* Container animasi kecil di pojok bawah */
+  #masGondrongAnimation {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;  /* ukuran kecil */
+    height: 100px;
+    pointer-events: none; /* agar tidak menghalangi klik */
+    background: transparent;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+
+  #fireCanvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  #masGondrongAnimation img.photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;  /* foto lebih kecil */
+    height: 80px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    box-shadow: 0 0 10px 3px rgba(255, 140, 0, 0.8);
+    z-index: 2;
+    pointer-events: auto; /* jika ingin foto bisa diinteraksi */
+  }
+
+.btn-install {
+  display: none;           /* disembunyikan dulu, muncul otomatis jika bisa diinstall */
+  width: 100%;
+  max-width: 400px;
+  padding: 14px 20px;
+  margin: 20px auto;
+  background: #8b5e3c;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(139, 94, 60, 0.35);
+  cursor: pointer;
+}
+.btn-install:active {
+  transform: scale(0.97);
+}
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo Akang Motor" onclick="ketukLogoAdmin()">
+        </div>
+        <button class="menu-hamburger" onclick="toggleMenu()">☰</button>
+    </header>
+
+        <!-- SIDE NAV MENU (Pembaruan Menu Akang Motor) -->
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+    <div class="side-menu" id="sideMenu">
+        <button class="close-btn" onclick="toggleMenu()">✕</button>
+        <div class="menu-header">
+            <h3>Menu: Akang Motor</h3>
+        </div>
+        <ul>
+            <li><a href="#" onclick="toggleMenu()">🏠 Beranda</a></li>
+            <li><a href="#" onclick="toggleMenu()">🛠️ Layanan Kami</a></li>
+            <li><a href="#" onclick="openReview()">⭐ Ulasan Pelanggan</a></li>
+            <li><a href="#" onclick="openGallery()">📸 Galery</a></li>
+            <li><a href="#" onclick="openHistory()">📝 Riwayat Service</a></li>
+            <li><a href="#" onclick="openContact()">☎️ Hubungi Akang</a></li>
+            
+        </ul>
+    </div>
+
+    <!-- BACKGROUND FOTO MOTOR -->
+    <div class="hero-banner"></div>
+
+    <button id="btnInstall" class="btn-install">
+  📲 Install Aplikasi
+</button>
+
+    <!-- KETERANGAN & DESKRIPSI -->
+    <div class="main-info">
+        <h1>AKANG <span>MOTOR</span></h1>
+        <p class="tagline">
+            <strong>Motor Anda Prioritas Kami!</strong> Akang Motor melayani berbagai macam kebutuhan kendaraan Anda mulai dari service mesin rutin, perbaikan kelistrikan, perawatan bodi, tune-up, ganti oli berkala, hingga penggantian sparepart berkualitas tinggi untuk semua jenis motor.
+        </p>
+    </div>
+
+        <!-- MENU FITUR/LAYANAN (WAHYU TERBARU) -->
+    <div class="services-section">
+        <div class="services-intro">
+            <h2>🏍️ AKANG MOTOR SERVICE</h2>
+            <h3>🔧 Bengkel Motor — Siap Melayani Berbagai Jenis Kerusakan Motor</h3>
+            <p>Akang Motor melayani berbagai macam perawatan, perbaikan, dan servis sepeda motor, mulai dari kerusakan ringan hingga kerusakan berat.</p>
+        </div>
+
+        <div class="services-header-title">
+            <h2>🔧 LAYANAN KAMI</h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">🛠️</div>
+                <h4>Service Mesin</h4>
+                <p>Perawatan dan perbaikan mesin motor agar kembali optimal.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">⚙️</div>
+                <h4>Tune Up</h4>
+                <p>Pengecekan dan penyetelan mesin secara menyeluruh.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🛢️</div>
+                <h4>Ganti Oli</h4>
+                <p>Penggantian oli mesin dan pemeriksaan kondisi oli.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔥</div>
+                <h4>Service Karburator</h4>
+                <p>Membersihkan, menyetel, dan memperbaiki sistem karburator.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">⚡</div>
+                <h4>Kelistrikan Motor</h4>
+                <p>Perbaikan kabel, lampu, aki, starter, pengapian, sekring, dll.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔩</div>
+                <h4>Piston & Seher</h4>
+                <p>Pengecekan, penggantian, dan perbaikan piston/seher.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">⚙️</div>
+                <h4>Bubut & Perbaikan</h4>
+                <p>Pengerjaan komponen mesin yang butuh proses bubut khusus.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🛞</div>
+                <h4>Ganti Ban</h4>
+                <p>Penggantian ban depan/belakang serta cek kondisi ban.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔧</div>
+                <h4>Service CVT</h4>
+                <p>Perawatan dan perbaikan komponen CVT untuk motor matic.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">⛓️</div>
+                <h4>Rantai & Gear</h4>
+                <p>Pengecekan, penyetelan, dan penggantian rantai serta gear.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🛑</div>
+                <h4>Rem Motor</h4>
+                <p>Pemeriksaan dan perbaikan rem cakram maupun tromol.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔋</div>
+                <h4>Aki & Starter</h4>
+                <p>Pengecekan aki, sistem starter elektrik, dan starter motor.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">💡</div>
+                <h4>Lampu & Sein</h4>
+                <p>Perbaikan lampu utama, rem, sein, klakson, dan pendukung.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">⛽</div>
+                <h4>Sistem BBM</h4>
+                <p>Pemeriksaan dan perbaikan sistem serta saluran bensin.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🌡️</div>
+                <h4>Sistem Pendingin</h4>
+                <p>Pengecekan radiator, coolant, kipas, dan pendingin.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔊</div>
+                <h4>Knalpot</h4>
+                <p>Pemeriksaan dan perbaikan masalah pada sistem knalpot.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🛵</div>
+                <h4>Body & Komponen</h4>
+                <p>Perbaikan dan penggantian berbagai komponen pendukung body.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🔍</div>
+                <h4>Cek & Diagnosa</h4>
+                <p>Pemeriksaan kondisi motor untuk mencari sumber masalah.</p>
+            </div>
+        </div>
+
+        <div class="services-footer">
+            <h3>🚨 MENERIMA SEGALA JENIS KERUSAKAN MOTOR</h3>
+            <p class="sub-footer-text">Dari kerusakan ringan hingga kerusakan berat.</p>
+            <p>Kami membantu menangani berbagai masalah motor, baik motor matic, bebek, maupun motor manual, sesuai jenis kerusakan dan kebutuhan perbaikan.</p>
+            
+            <div class="closing-banner">
+                <h3>🏍️ AKANG MOTOR</h3>
+                <p class="quote">“Motor Bermasalah? Serahkan Pada Kami!” 🔧</p>
+                <div class="closing-tags">
+                    <span>📍 Servis • Perawatan • Perbaikan • Diagnosa</span>
+                    <span>🔩 Kerusakan Ringan • Sedang • Berat</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOMBOL BOOKING UTAMA -->
+    <div class="cta-container">
+    <button class="btn-booking" onclick="openPromo()">PROMO Akang Motor</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Animasi kecil di pojok bawah -->
+    <a href="https://mas-gondrong.github.io/mas-gondrong/" target="_blank" style="display: inline-block;">
+  <div id="masGondrongAnimation" style="cursor: pointer;">
+    <canvas id="fireCanvas" width="100" height="100"></canvas>
+    <img src="mas_gondrong.png" alt="Mas Gondrong" class="photo" />
+  </div>
+    </a>
+
+    <!-- MODAL FULL SCREEN: ULASAN PELANGGAN (VERSI FIREBASE) -->
+<div id="reviewModal" class="review-modal">
+    <button class="close-review-btn" onclick="closeReview()">✕</button>
+    
+    <div class="review-content">
+        <h2>ULASAN PELANGGAN</h2>
+        <div class="red-line"></div>
+        
+        <!-- AREA RATING RINGKASAN DINAMIS -->
+        <div class="rating-summary">
+            <div class="rating-number" id="avgRating">0.0</div>
+            <div class="stars" id="avgStars">⭐⭐⭐⭐⭐</div>
+            <div class="total-reviews" id="totalReviewsCount">Memuat ulasan...</div>
+        </div>
+
+        <!-- FORMULIR INPUT ULASAN BARU -->
+        <div class="review-form-container">
+            <h3>Tulis Ulasan Anda</h3>
+            <input type="text" id="reviewerName" placeholder="Nama Anda" required>
+            
+            <div class="star-rating-input">
+                <span class="star-input" onclick="setRating(1)">★</span>
+                <span class="star-input" onclick="setRating(2)">★</span>
+                <span class="star-input" onclick="setRating(3)">★</span>
+                <span class="star-input" onclick="setRating(4)">★</span>
+                <span class="star-input" onclick="setRating(5)">★</span>
+            </div>
+            <input type="hidden" id="reviewRatingValue" value="5">
+
+            <textarea id="reviewerText" placeholder="Tulis pengalaman servis Anda di Akang Motor..." rows="3" required></textarea>
+            <button class="btn-submit-review" onclick="kirimUlasanKeFirebase()">Kirim Ulasan</button>
+        </div>
+
+        <!-- DAFTAR KARTU ULASAN DARI FIREBASE -->
+        <div class="review-list" id="firebaseReviewList">
+            <!-- Data dari Firebase akan disuntikkan secara otomatis di sini -->
+        </div>
+    </div>
+</div>
+    
+    <!-- MODAL FULL SCREEN: GALERY BENGKEL -->
+<div id="galleryModal" class="gallery-modal">
+    <!-- Tombol Tutup di Pojok Kanan Atas -->
+    <button class="close-gallery-btn" onclick="closeGallery()">✕</button>
+    
+    <div class="gallery-content">
+        <h2>GALERY AKANG MOTOR</h2>
+        <div class="red-line"></div>
+        
+        <p class="gallery-subtitle">Dokumentasi hasil pengerjaan, ruang servis, dan bukti nyata kepuasan pelanggan kami.</p>
+
+        <!-- AREA GRID FOTO (Mengambil File dari GitHub Anda) -->
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="foto1.jpg" alt="Dokumentasi Akang Motor 1" onerror="this.parentElement.style.display='none'">
+                <div class="gallery-tag">Tune Up</div>
+            </div>
+            <div class="gallery-item">
+                <img src="foto2.jpg" alt="Dokumentasi Akang Motor 2" onerror="this.parentElement.style.display='none'">
+                <div class="gallery-tag">Ganti Ban</div>
+            </div>
+            <div class="gallery-item">
+                <img src="foto3.jpg" alt="Dokumentasi Akang Motor 3" onerror="this.parentElement.style.display='none'">
+                <div class="gallery-tag">Service CVT</div>
+            </div>
+            <div class="gallery-item">
+                <img src="foto4.jpg" alt="Dokumentasi Akang Motor 4" onerror="this.parentElement.style.display='none'">
+                <div class="gallery-tag">Overhaul</div>
+            </div>
+            <div class="gallery-item">
+                <img src="foto5.jpg" alt="Dokumentasi Akang Motor 5" onerror="this.parentElement.style.display='none'">
+                <div class="gallery-tag">Kelisrtikan</div>
+            </div>
+            <div class="gallery-item">
+                <img src="foto6.jpg" alt="Dokumentasi Akang Motor 6" onerror="this.parentElement.style.display='none'">
+                <div class="gallery-tag">Selesai Servis</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- MODAL FULL SCREEN: RIWAYAT SERVICE -->
+<div id="historyModal" class="history-modal">
+    <!-- Tombol Tutup di Pojok Kanan Atas -->
+    <button class="close-history-btn" onclick="closeHistory()">✕</button>
+    
+    <div class="history-content">
+        <!-- JUDUL & SUB-JUDUL DRAMATIS -->
+        <h2>JEJAK PERJALANAN</h2>
+        <div class="red-line"></div>
+        
+        <p class="dramatic-subtitle">
+            "Setiap deru mesin yang kembali hidup adalah saksi bisu dari tetesan keringat, dedikasi tanpa batas, dan kepercayaan yang Anda titipkan di tangan kami."
+        </p>
+
+        <!-- TEMPAT KISAH (RUANG UNTUK WAHYU ANDA) -->
+        <div class="story-card">
+            <div class="story-icon">🦅</div>
+            <h3>Awal Mula Sebuah Dedikasi</h3>
+            <p class="story-placeholder">
+                [ Teks kisah perjalanan Akang Motor akan berdiri kokoh di sini. Begitu wahyu inspirasi datang, coretan sejarah, suka duka, dan komitmen bengkel ini siap menginspirasi setiap pelanggan yang membaca. ]
+            </p>
+        </div>
+
+        <div class="story-card text-center">
+            <div class="story-icon">🛠️</div>
+            <h3>Komitmen yang Takkan Pudar</h3>
+            <p class="story-placeholder">
+                [ Teks komitmen dan visi masa depan Akang Motor dalam menjaga keselamatan berkendara setiap pelanggan di jalanan Batam akan diisi di bagian ini. ]
+            </p>
+        </div>
+    </div>
+</div>
+
+    <!-- MODAL FULL SCREEN: HUBUNGI AKANG -->
+<div id="contactModal" class="contact-modal">
+    <!-- Tombol Tutup di Pojok Kanan Atas -->
+    <button class="close-contact-btn" onclick="closeContact()">✕</button>
+ 
